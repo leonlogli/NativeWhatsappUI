@@ -1,49 +1,25 @@
-import Entypo from 'react-native-vector-icons/Entypo';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import { useRef, useState } from 'react';
 import {
-  Alert,
-  Dimensions,
-  ImageBackground,
-  Pressable,
-  TextInput,
   View,
+  TextInput,
+  Pressable,
+  ImageBackground,
+  Dimensions,
 } from 'react-native';
+import { useState, useRef, useContext } from 'react';
 import {
   Transition,
   Transitioning,
   TransitioningView,
 } from 'react-native-reanimated';
-import { useDispatch, useSelector } from 'react-redux';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import Entypo from 'react-native-vector-icons/Entypo';
 
 import Colors from '../../constants/Colors';
-import formatMessage from '../../helpers/formatMessage';
 import useKeyboardOffsetHeight from '../../helpers/useKeyboardOffsetHeight';
-import {
-  markConversationAsRead,
-  sendMessage,
-} from '../../redux/conversationsReducer';
-import type { RootState } from '../../redux/store';
-import { Conversation } from '../../types';
+import { ConversationType } from '../../types';
+import { ConversationsContext } from '../../context/conversationContext';
 
-function _prepMessage(
-  newMsg: string,
-  thisConversationID: string,
-  userID: string,
-  setNewMsg: (msg: string) => void,
-  isTyping: boolean,
-  setIsTyping: (isTyping: boolean) => void,
-) {
-  if (isTyping) {
-    setNewMsg('');
-    setIsTyping(false);
-    const message = formatMessage(newMsg, userID, thisConversationID);
-    return message;
-  }
-}
-
-import addNewMessage from '../../api/addNewMessage';
 import styles from './SendButton.styles';
 
 interface SendButtonProps {
@@ -51,23 +27,17 @@ interface SendButtonProps {
   isTyping: boolean;
   setHeightOfMessageBox: (height: number) => void;
   heightOfMessageBox: number;
-  thisConversation: Conversation;
+  thisConversation: ConversationType;
 }
 export default function SendButton(props: SendButtonProps) {
-  const dispatch = useDispatch();
-  const currentUser = useSelector(
-    (state: RootState) => state.users.currentUser,
-  );
   const whatsappBackgroundImg = '../../assets/images/whatsapp.png';
   const { setIsTyping, isTyping, setHeightOfMessageBox, thisConversation } =
     props;
-  const hasUnreadMessages =
-    thisConversation.messages.length > 0 &&
-    !thisConversation.messages[thisConversation.messages.length - 1].isRead;
   const [newMsg, setNewMsg] = useState('');
   const ref = useRef<TransitioningView | null>(null);
   const keyBoardOffsetHeight = useKeyboardOffsetHeight();
-  const userID = currentUser?.id;
+  const userID = 2;
+  const { sendMessage } = useContext(ConversationsContext);
 
   const windowHeight = Dimensions.get('window').height;
 
@@ -135,28 +105,16 @@ export default function SendButton(props: SendButtonProps) {
         >
           <Pressable
             style={styles.voiceButton}
-            onPress={() => {
-              if (!userID) {
-                Alert.alert('user id is null');
-              } else {
-                const message = _prepMessage(
-                  newMsg,
-                  thisConversation.id,
-                  userID,
-                  setNewMsg,
-                  isTyping,
-                  setIsTyping,
-                );
-                if (message) {
-                  addNewMessage(message).then(() => {
-                    dispatch(sendMessage(message));
-                    if (!hasUnreadMessages) {
-                      dispatch(markConversationAsRead(thisConversation));
-                    }
-                  });
-                }
-              }
-            }}
+            onPress={() =>
+              sendMessage(
+                newMsg,
+                thisConversation.id,
+                userID,
+                setNewMsg,
+                isTyping,
+                setIsTyping,
+              )
+            }
           >
             <Transitioning.View ref={ref} transition={msgTypeTransition}>
               {isTyping ? (

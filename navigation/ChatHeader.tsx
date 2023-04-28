@@ -1,31 +1,25 @@
+import { useContext } from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Entypo from 'react-native-vector-icons/Entypo';
+
 import { Pressable, Image, View, Text } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { ParamListBase } from '@react-navigation/native';
-import { useSelector } from 'react-redux';
-
 import images from '../assets/index';
-import type { RootState } from '../redux/store';
 
 import Colors from '../constants/Colors';
+import { ConversationsContext } from '../context/conversationContext';
 
 interface Props {
   navigation: NativeStackNavigationProp<ParamListBase, string, undefined>;
 }
 
 export default function ChatHeader(props: Props) {
-  const currentConversation = useSelector(
-    (state: RootState) => state.conversations.currentConversation,
-  );
-
-  const name = currentConversation && currentConversation.name;
-  const randomProfilePic =
-    currentConversation && currentConversation.randomProfilePicture;
+  const { getCurrentConversation } = useContext(ConversationsContext);
+  const { id, title } = getCurrentConversation();
   const { navigation } = props;
-
-  const profileImg = images[randomProfilePic ? randomProfilePic : 0];
+  const profileImg = images[id];
 
   return (
     <View
@@ -69,7 +63,7 @@ export default function ChatHeader(props: Props) {
             fontWeight: '600',
           }}
         >
-          {name}
+          {title}
         </Text>
       </View>
       <View

@@ -1,48 +1,42 @@
 import { View, Text } from 'react-native';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import dayjs from 'dayjs';
-import { useSelector } from 'react-redux';
 
-import { MessageData } from '../../types';
+import { MessageDataType } from '../../types';
 import styles from './MessageBubble.styles';
-import { RootState } from '../../redux/store';
 
-export default function MessageBubble(props: MessageData) {
-  const currentUser = useSelector(
-    (state: RootState) => state.users.currentUser,
-  );
+export default function MessageBubble(props: MessageDataType) {
   const { message } = props;
-
-  const isMyMessage = message.userID === currentUser?.id;
+  const isMyMessage = message.userID === 1;
   const isMessageRead = false;
   return (
     <View
       style={{
         ...styles.messageContainer,
-        alignSelf: isMyMessage ? 'flex-end' : 'flex-start',
-        backgroundColor: isMyMessage ? '#dfffc7' : '#fcfcfc',
-        borderTopLeftRadius: isMyMessage ? 5 : 0,
-        borderTopRightRadius: isMyMessage ? 0 : 5,
+        alignSelf: isMyMessage ? 'flex-start' : 'flex-end',
+        backgroundColor: isMyMessage ? '#fcfcfc' : '#dfffc7',
+        borderTopLeftRadius: isMyMessage ? 0 : 5,
+        borderTopRightRadius: isMyMessage ? 5 : 0,
       }}
     >
       <View
         style={{
           ...styles.leftMessageArrow,
-          display: isMyMessage ? 'none' : 'flex',
+          display: isMyMessage ? 'flex' : 'none',
         }}
-       />
+      />
       <Text
         style={{
           ...styles.messageText,
-          left: isMyMessage ? 10 : 0,
+          left: isMyMessage ? 0 : 10,
         }}
       >
-        {message.message}
+        {message.text}
       </Text>
       <View
         style={{
           ...styles.timeAndReadContainer,
-          left: isMyMessage ? 10 : 0,
+          left: isMyMessage ? 0 : 10,
         }}
       >
         <Text style={styles.timeText}>
@@ -58,9 +52,9 @@ export default function MessageBubble(props: MessageData) {
         <View
           style={{
             ...styles.rightMsgArrow,
-            display: isMyMessage ? 'flex' : 'none',
+            display: isMyMessage ? 'none' : 'flex',
           }}
-         />
+        />
       </View>
     </View>
   );

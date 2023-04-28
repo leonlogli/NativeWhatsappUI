@@ -1,34 +1,29 @@
-import { View, ImageBackground, Text } from 'react-native';
-import { useState } from 'react';
-import { RouteProp } from '@react-navigation/native';
-import { useSelector } from 'react-redux';
+import { View, ImageBackground } from 'react-native';
+import { useState, useContext } from 'react';
 
 import SendButton from '../../components/SendButton/SendButton';
 import ChatMessages from '../../components/ChatMessages/ChatMessages';
-import { Conversation } from '../../types';
-import { RootState } from '../../redux/store';
-
+import { RootStackScreenProps } from '../../types';
+import { ConversationsContext } from '../../context/conversationContext';
 import styles from './Chat.styles';
 
-export interface ChatProps {
-  route: RouteProp<{ params: { conversation: Conversation } }, 'params'>;
-}
+export type ChatProps = RootStackScreenProps<'Chat'>;
 
-export default function Chat() {
-  const conversation = useSelector(
-    (state: RootState) => state.conversations.currentConversation,
-  );
-  const messages = conversation ? conversation.messages : [];
+const whatsappBackgroundImg = require('../../assets/images/whatsapp.png');
 
-  const whatsappBackgroundImg = '../../assets/images/whatsapp.png';
+export default function Chat(props: ChatProps) {
+  const { conversation } = props.route.params;
+  const { getCurrentConversation } = useContext(ConversationsContext);
+  const { messages } = getCurrentConversation();
+
   const [isTyping, setIsTyping] = useState(false);
   const [heightOfMessageBox, setHeightOfMessageBox] = useState(0);
 
-  return conversation ? (
+  return (
     <View style={styles.mainContainer}>
       <ImageBackground
         style={styles.backgroundImg}
-        source={require(whatsappBackgroundImg)}
+        source={whatsappBackgroundImg}
         resizeMode="cover"
       >
         <ChatMessages
@@ -44,7 +39,5 @@ export default function Chat() {
         />
       </ImageBackground>
     </View>
-  ) : (
-    <Text>Loading</Text>
   );
 }
