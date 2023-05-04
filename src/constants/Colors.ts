@@ -7,7 +7,7 @@ export default {
     offBlack: '#3d3d3d',
     grey: '#7e8689',
     quiteDarkGreen: '#00a983',
-    darkGreen: '#008069',
+    darkGreen: '#075E54',
     tint: tintColorLight,
     tabIconDefault: '#ccc',
     tabIconSelected: tintColorLight,

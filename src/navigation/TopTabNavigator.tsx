@@ -35,16 +35,12 @@ export default function TopTabNavigator() {
       <TopTab.Screen
         name="Status"
         component={StatusScreen}
-        options={{
-          title: 'Status',
-        }}
+        options={{ title: 'Status' }}
       />
       <TopTab.Screen
         name="Calls"
         component={CallsScreen}
-        options={{
-          title: 'Calls',
-        }}
+        options={{ title: 'Calls' }}
       />
     </TopTab.Navigator>
   );
