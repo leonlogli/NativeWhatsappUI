@@ -40,7 +40,7 @@ export default StyleSheet.create({
     alignContent: 'center',
   },
   voiceButton: {
-    backgroundColor: Colors.light.quiteDarkGreen,
+    backgroundColor: Colors.light.darkGreen,
     borderRadius: 50,
     height: windowWidth * 0.1,
     width: windowWidth * 0.1,

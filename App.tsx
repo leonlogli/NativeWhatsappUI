@@ -12,7 +12,7 @@ const App = () => (
       <Navigation />
       <StatusBar
         barStyle="light-content"
-        backgroundColor={Colors.light.darkGreen}
+        backgroundColor={Colors.light.quiteDarkGreen}
       />
     </SafeAreaProvider>
   </ConversationsProvider>

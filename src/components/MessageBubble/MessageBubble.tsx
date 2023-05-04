@@ -5,10 +5,10 @@ import dayjs from 'dayjs';
 import { MessageDataType } from '../../types';
 import styles from './MessageBubble.styles';
 
-export default function MessageBubble(props: MessageDataType) {
-  const { message } = props;
+const MessageBubble = ({ message }: MessageDataType) => {
   const isMyMessage = message.userID === 1;
   const isMessageRead = false;
+
   return (
     <View
       style={{
@@ -58,4 +58,6 @@ export default function MessageBubble(props: MessageDataType) {
       </View>
     </View>
   );
-}
+};
+
+export default MessageBubble;

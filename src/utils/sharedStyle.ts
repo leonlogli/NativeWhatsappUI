@@ -1,17 +1,12 @@
 import { StyleSheet } from 'react-native';
-import colors from './colors';
+import Colors from '../constants/Colors';
 
 const sharedStyle = StyleSheet.create({
   flex1: { flex: 1 },
-  title: {
-    fontSize: 18,
-    fontWeight: '600',
-    color: colors.text.primary,
-  },
-  center: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+  separator: {
+    height: 1,
+    width: '100%',
+    backgroundColor: Colors.light.divider,
   },
 });
 

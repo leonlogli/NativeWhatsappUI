@@ -6,13 +6,13 @@ const startingConversations: ConversationType[] = [
     title: 'Nic Cage',
     messages: [
       {
-        text: 'Hey how are you?',
+        text: 'Hey how are you ?',
         time: new Date(),
         userID: 1,
         id: '1',
       },
       {
-        text: 'Really good thanks! How about you?',
+        text: 'Really good thanks! How about you lorem ?',
         time: new Date(),
         userID: 2,
         id: '2',
@@ -180,7 +180,7 @@ const startingConversations: ConversationType[] = [
         id: '30',
       },
       {
-        text: 'Really good thanks! How about you?',
+        text: 'Nougat Really good thanks! How about you Really good thanks! How about you?',
         time: new Date(),
         userID: 2,
         id: '31',
@@ -199,7 +199,7 @@ const startingConversations: ConversationType[] = [
         id: '1',
       },
       {
-        text: 'Test2',
+        text: 'Test 2',
         time: new Date(),
         userID: 2,
         id: '2',

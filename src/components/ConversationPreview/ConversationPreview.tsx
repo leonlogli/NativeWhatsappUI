@@ -8,16 +8,15 @@ import styles from './ConversationPreview.styles';
 import { ConversationsContext } from '../../context/conversationContext';
 import images from '../../assets/index';
 
-interface ConversationPreviewProps {
+type ConversationPreviewProps = {
   conversation: ConversationType;
-}
+};
 
-interface ChatRouteParams {
+type ChatRouteParams = {
   conversation: ConversationType;
-}
+};
 
-export default function ConversationPreview(props: ConversationPreviewProps) {
-  const { conversation } = props;
+const ConversationPreview = ({ conversation }: ConversationPreviewProps) => {
   const { setCurrentConversation } = useContext(ConversationsContext);
   const navigation = useNavigation();
   const profileImg = images[conversation.id];
@@ -26,16 +25,16 @@ export default function ConversationPreview(props: ConversationPreviewProps) {
     conversation,
   };
 
-  const _onPress = () => {
+  const goToChat = () => {
     setCurrentConversation(conversation.id);
     navigation.navigate('Chat', chatRouteParams);
   };
 
   return (
-    <TouchableOpacity onPress={_onPress} style={styles.messageContainer}>
+    <TouchableOpacity onPress={goToChat} style={styles.messageContainer}>
       <View style={styles.imgAndMsgSubContainer}>
         <Image style={styles.profileImg} source={profileImg} />
-        <View>
+        <View style={{ flex: 1 }}>
           <Text style={styles.msgTitle}>{conversation.title}</Text>
           <Text
             numberOfLines={1}
@@ -60,4 +59,6 @@ export default function ConversationPreview(props: ConversationPreviewProps) {
       </View>
     </TouchableOpacity>
   );
-}
+};
+
+export default ConversationPreview;
