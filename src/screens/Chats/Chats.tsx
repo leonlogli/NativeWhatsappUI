@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import { View } from 'react-native';
 
 import ChatPreviewItem from '../../components/ChatPreviewItem';
-import { ConversationsContext } from '../../context/conversationContext';
+import { ChatsContext } from '../../context/ChatsProvider';
 import { Chat } from '../../types';
 import sharedStyle from '../../utils/sharedStyle';
 import styles from './Chats.styles';
@@ -27,12 +27,12 @@ const ItemSeparatorComponent = () => (
 );
 
 const ChatsScreen = () => {
-  const { conversations } = useContext(ConversationsContext);
+  const { chats } = useContext(ChatsContext);
 
   return (
     <View style={styles.mainContainer}>
       <FlashList
-        data={conversations}
+        data={chats}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
         estimatedItemSize={50}

@@ -1,6 +1,6 @@
 import { Chat } from '../types';
 
-const startingChats: Chat[] = [
+const initialChats: Chat[] = [
   {
     id: '101',
     title: 'Nic Cage',
@@ -207,7 +207,7 @@ const startingChats: Chat[] = [
     ],
     users: [1, 2],
   },
-  // generate more conversations here
+  // generate more chats here
   {
     id: '103',
     title: 'Mr Cage',
@@ -247,4 +247,5 @@ const startingChats: Chat[] = [
     users: [1, 2],
   },
 ];
-export default startingChats;
+
+export default initialChats;

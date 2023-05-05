@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 
 import images from '../../assets/index';
-import { ConversationsContext } from '../../context/conversationContext';
+import { ChatsContext } from '../../context/ChatsProvider';
 import { Chat } from '../../types';
 import styles from './ChatPreviewItem.style';
 
@@ -13,12 +13,12 @@ type ChatPreviewItemProps = {
 };
 
 const ChatPreviewItem = ({ chat }: ChatPreviewItemProps) => {
-  const { setCurrentConversation } = useContext(ConversationsContext);
+  const { setCurrentChat } = useContext(ChatsContext);
   const navigation = useNavigation();
   const profileImg = images[chat.id];
 
   const goToChat = () => {
-    setCurrentConversation(chat.id);
+    setCurrentChat(chat.id);
     navigation.navigate('Chat', { chat });
   };
 

@@ -2,9 +2,9 @@ import { View, ImageBackground } from 'react-native';
 import { useState, useContext } from 'react';
 
 import SendButton from '../../components/SendButton/SendButton';
-import ChatMessages from '../../components/ChatMessages/ChatMessages';
+import ChatMessages from '../../components/ChatMessages';
 import { RootStackScreenProps } from '../../types';
-import { ConversationsContext } from '../../context/conversationContext';
+import { ChatsContext } from '../../context/ChatsProvider';
 import styles from './Chat.styles';
 
 export type ChatProps = RootStackScreenProps<'Chat'>;
@@ -13,8 +13,9 @@ const whatsappBackgroundImg = require('../../assets/images/whatsapp.png');
 
 export default function Chat(props: ChatProps) {
   const { chat } = props.route.params;
-  const { getCurrentConversation } = useContext(ConversationsContext);
-  const { messages } = getCurrentConversation();
+
+  const { getCurrentChat } = useContext(ChatsContext);
+  const { messages } = getCurrentChat();
 
   const [isTyping, setIsTyping] = useState(false);
   const [heightOfMessageBox, setHeightOfMessageBox] = useState(0);
@@ -35,7 +36,7 @@ export default function Chat(props: ChatProps) {
           isTyping={isTyping}
           setHeightOfMessageBox={setHeightOfMessageBox}
           heightOfMessageBox={heightOfMessageBox}
-          thisConversation={chat}
+          chat={chat}
         />
       </ImageBackground>
     </View>

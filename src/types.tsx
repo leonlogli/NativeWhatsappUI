@@ -49,16 +49,16 @@ export interface MessageDataType {
   message: MessageType;
 }
 
-export type ConversationsContextType = {
-  conversations: Chat[];
+export type ChatContextProps = {
+  chats: Chat[];
   sendMessage: (
     message: string,
-    conversationID: string,
+    chatID: string,
     userID: number,
     setNewMsg: (msg: string) => void,
     isTyping: boolean,
     setIsTyping: (isTyping: boolean) => void,
   ) => void;
-  getCurrentConversation: () => Chat;
-  setCurrentConversation: (id: string) => void;
+  getCurrentChat: () => Chat;
+  setCurrentChat: (id: string) => void;
 };

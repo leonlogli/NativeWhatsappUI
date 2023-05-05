@@ -18,26 +18,31 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import Colors from '../../constants/Colors';
 import useKeyboardOffsetHeight from '../../helpers/useKeyboardOffsetHeight';
 import { Chat } from '../../types';
-import { ConversationsContext } from '../../context/conversationContext';
+import { ChatsContext } from '../../context/ChatsProvider';
 
 import styles from './SendButton.styles';
 
-interface SendButtonProps {
+type SendButtonProps = {
   setIsTyping: (isTyping: boolean) => void;
   isTyping: boolean;
   setHeightOfMessageBox: (height: number) => void;
   heightOfMessageBox: number;
-  thisConversation: Chat;
-}
-export default function SendButton(props: SendButtonProps) {
-  const whatsappBackgroundImg = '../../assets/images/whatsapp.png';
-  const { setIsTyping, isTyping, setHeightOfMessageBox, thisConversation } =
-    props;
+  chat: Chat;
+};
+
+const whatsappBackgroundImg = require('../../assets/images/whatsapp.png');
+
+const SendButton = ({
+  setIsTyping,
+  isTyping,
+  setHeightOfMessageBox,
+  chat,
+}: SendButtonProps) => {
   const [newMsg, setNewMsg] = useState('');
   const ref = useRef<TransitioningView | null>(null);
   const keyBoardOffsetHeight = useKeyboardOffsetHeight();
   const userID = 2;
-  const { sendMessage } = useContext(ConversationsContext);
+  const { sendMessage } = useContext(ChatsContext);
 
   const windowHeight = Dimensions.get('window').height;
 
@@ -50,7 +55,7 @@ export default function SendButton(props: SendButtonProps) {
     >
       <ImageBackground
         style={{ flex: 1, flexDirection: 'row', width: '100%' }}
-        source={require(whatsappBackgroundImg)}
+        source={whatsappBackgroundImg}
         resizeMode="cover"
       >
         <View style={styles.textBoxContainer}>
@@ -108,7 +113,7 @@ export default function SendButton(props: SendButtonProps) {
             onPress={() =>
               sendMessage(
                 newMsg,
-                thisConversation.id,
+                chat.id,
                 userID,
                 setNewMsg,
                 isTyping,
@@ -132,7 +137,7 @@ export default function SendButton(props: SendButtonProps) {
       </ImageBackground>
     </View>
   );
-}
+};
 
 const msgTypeTransition = (
   <Transition.Together>
@@ -141,3 +146,5 @@ const msgTypeTransition = (
     <Transition.In type="scale" durationMs={100} />
   </Transition.Together>
 );
+
+export default SendButton;

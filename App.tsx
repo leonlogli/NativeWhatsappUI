@@ -3,11 +3,11 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { StatusBar } from 'react-native';
 
 import Colors from './src/constants/Colors';
-import { ConversationsProvider } from './src/context/conversationContext';
+import { ChatsProvider } from './src/context/ChatsProvider';
 import Navigation from './src/navigation';
 
 const App = () => (
-  <ConversationsProvider>
+  <ChatsProvider>
     <SafeAreaProvider>
       <Navigation />
       <StatusBar
@@ -15,7 +15,7 @@ const App = () => (
         backgroundColor={Colors.light.quiteDarkGreen}
       />
     </SafeAreaProvider>
-  </ConversationsProvider>
+  </ChatsProvider>
 );
 
 export default App;

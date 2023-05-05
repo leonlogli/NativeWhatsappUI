@@ -9,15 +9,15 @@ import { ParamListBase } from '@react-navigation/native';
 import images from '../assets/index';
 
 import Colors from '../constants/Colors';
-import { ConversationsContext } from '../context/conversationContext';
+import { ChatsContext } from '../context/ChatsProvider';
 
 interface Props {
   navigation: NativeStackNavigationProp<ParamListBase, string, undefined>;
 }
 
 export default function ChatHeader(props: Props) {
-  const { getCurrentConversation } = useContext(ConversationsContext);
-  const { id, title } = getCurrentConversation();
+  const { getCurrentChat } = useContext(ChatsContext);
+  const { id, title } = getCurrentChat();
   const { navigation } = props;
   const profileImg = images[id];
 
