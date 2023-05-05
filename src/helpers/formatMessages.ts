@@ -1,10 +1,10 @@
 import { Message } from '../types';
 
-export default function formatMessage(msg: string, userID: number): Message {
+export default function formatMessage(msg: string, userId: number): Message {
   return {
     id: `${Math.random()}`,
     text: msg,
-    userID: userID,
-    time: new Date(),
+    userId,
+    createdAt: new Date(),
   };
 }

@@ -41,7 +41,7 @@ const SendButton = ({
   const [newMsg, setNewMsg] = useState('');
   const ref = useRef<TransitioningView | null>(null);
   const keyBoardOffsetHeight = useKeyboardOffsetHeight();
-  const userID = 2;
+  const userId = 2;
   const { sendMessage } = useContext(ChatsContext);
 
   const windowHeight = Dimensions.get('window').height;
@@ -114,7 +114,7 @@ const SendButton = ({
               sendMessage(
                 newMsg,
                 chat.id,
-                userID,
+                userId,
                 setNewMsg,
                 isTyping,
                 setIsTyping,

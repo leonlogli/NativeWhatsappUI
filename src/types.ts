@@ -34,13 +34,13 @@ export type HomeTabScreenProps<Screen extends keyof HomeTabParamList> =
 export type Chat = {
   id: string;
   messages: Message[];
-  users: number[];
   title: string;
+  image?: string;
 };
 
 export type Message = {
   text: string;
-  time: Date;
-  userID: number;
+  createdAt: Date | string;
+  userId: number;
   id: string;
 };

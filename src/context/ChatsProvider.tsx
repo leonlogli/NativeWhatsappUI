@@ -9,7 +9,7 @@ type ChatContextProps = {
   sendMessage: (
     message: string,
     chatID: string,
-    userID: number,
+    userId: number,
     setNewMsg: (msg: string) => void,
     isTyping: boolean,
     setIsTyping: (isTyping: boolean) => void,
@@ -51,7 +51,7 @@ export const ChatsProvider = ({ children }: ChatsProviderProps) => {
   const sendMessage = (
     newMsg: string,
     chatId: string,
-    userID: number,
+    userId: number,
     setNewMsg: (msg: string) => void,
     isTyping: boolean,
     setIsTyping: (isTyping: boolean) => void,
@@ -63,7 +63,7 @@ export const ChatsProvider = ({ children }: ChatsProviderProps) => {
       if (currChat && currChat.id === chatId) {
         setCurrChat((prev) => ({
           ...(prev as Chat),
-          messages: [...(prev?.messages || []), formatMessage(newMsg, userID)],
+          messages: [...(prev?.messages || []), formatMessage(newMsg, userId)],
         }));
       }
 
@@ -72,7 +72,7 @@ export const ChatsProvider = ({ children }: ChatsProviderProps) => {
           if (chat.id === chatId) {
             return {
               ...chat,
-              messages: [...chat.messages, formatMessage(newMsg, userID)],
+              messages: [...chat.messages, formatMessage(newMsg, userId)],
             };
           }
           return chat;
@@ -95,6 +95,10 @@ const sortChats = (chats: Chat[]) => {
   return chats.sort((a, b) => {
     const lastMessageA = a.messages[a.messages.length - 1];
     const lastMessageB = b.messages[b.messages.length - 1];
-    return lastMessageB.time.getTime() - lastMessageA.time.getTime();
+
+    return (
+      new Date(lastMessageB.createdAt).getTime() -
+      new Date(lastMessageA.createdAt).getTime()
+    );
   });
 };

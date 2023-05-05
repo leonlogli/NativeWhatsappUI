@@ -10,7 +10,7 @@ export type MessageBubbleProps = {
 };
 
 const MessageBubble = ({ message }: MessageBubbleProps) => {
-  const isMyMessage = message.userID === 1;
+  const isMyMessage = message.userId === 1;
   const isMessageRead = false;
 
   return (
@@ -40,7 +40,7 @@ const MessageBubble = ({ message }: MessageBubbleProps) => {
         }}
       >
         <Text style={styles.timeText}>
-          {dayjs(message.time).format('HH:mm A')}
+          {dayjs(message.createdAt).format('HH:mm A')}
         </Text>
         <View>
           {isMessageRead ? (

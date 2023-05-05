@@ -6,7 +6,6 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import { Pressable, Image, View, Text } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { ParamListBase } from '@react-navigation/native';
-import images from '../assets/index';
 
 import colors from '../utils/colors';
 import { ChatsContext } from '../context/ChatsProvider';
@@ -17,8 +16,7 @@ export type ChatBoxHeaderProps = {
 
 const ChatBoxHeader = ({ navigation }: ChatBoxHeaderProps) => {
   const { getCurrentChat } = useContext(ChatsContext);
-  const { id, title } = getCurrentChat();
-  const profileImg = images[id];
+  const { title, image } = getCurrentChat();
 
   return (
     <View
@@ -32,12 +30,7 @@ const ChatBoxHeader = ({ navigation }: ChatBoxHeaderProps) => {
         justifyContent: 'space-between',
       }}
     >
-      <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-        }}
-      >
+      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         <Pressable onPress={navigation.goBack}>
           <MaterialIcons name="arrow-back" size={24} color={colors.white} />
         </Pressable>
@@ -49,15 +42,9 @@ const ChatBoxHeader = ({ navigation }: ChatBoxHeaderProps) => {
             marginLeft: 2,
             borderRadius: 50,
           }}
-          source={profileImg}
+          source={{ uri: image }}
         />
-        <Text
-          style={{
-            color: colors.white,
-            fontSize: 20,
-            fontWeight: '600',
-          }}
-        >
+        <Text style={{ color: colors.white, fontSize: 20, fontWeight: '600' }}>
           {title}
         </Text>
       </View>
