@@ -4,30 +4,22 @@ import { useContext } from 'react';
 import dayjs from 'dayjs';
 
 import { ConversationType } from '../../types';
-import styles from './ConversationPreview.styles';
+import styles from './ChatPreview.styles';
 import { ConversationsContext } from '../../context/conversationContext';
 import images from '../../assets/index';
 
-type ConversationPreviewProps = {
+type ChatPreviewProps = {
   conversation: ConversationType;
 };
 
-type ChatRouteParams = {
-  conversation: ConversationType;
-};
-
-const ConversationPreview = ({ conversation }: ConversationPreviewProps) => {
+const ChatPreview = ({ conversation }: ChatPreviewProps) => {
   const { setCurrentConversation } = useContext(ConversationsContext);
   const navigation = useNavigation();
   const profileImg = images[conversation.id];
 
-  const chatRouteParams: ChatRouteParams = {
-    conversation,
-  };
-
   const goToChat = () => {
     setCurrentConversation(conversation.id);
-    navigation.navigate('Chat', chatRouteParams);
+    navigation.navigate('Chat', { conversation });
   };
 
   return (
@@ -61,4 +53,4 @@ const ConversationPreview = ({ conversation }: ConversationPreviewProps) => {
   );
 };
 
-export default ConversationPreview;
+export default ChatPreview;

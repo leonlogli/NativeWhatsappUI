@@ -2,7 +2,7 @@ import { FlashList } from '@shopify/flash-list';
 import React, { useContext } from 'react';
 import { View } from 'react-native';
 
-import ConversationPreview from '../../components/ConversationPreview/ConversationPreview';
+import ChatPreview from '../../components/ChatPreview';
 import { ConversationsContext } from '../../context/conversationContext';
 import { ConversationType } from '../../types';
 import sharedStyle from '../../utils/sharedStyle';
@@ -13,7 +13,7 @@ type ConversationItemProps = {
 };
 
 const renderConversationPreview = ({ item }: ConversationItemProps) => {
-  return <ConversationPreview key={item.id} conversation={item} />;
+  return <ChatPreview key={item.id} conversation={item} />;
 };
 
 const ItemSeparatorComponent = () => (
