@@ -7,7 +7,7 @@ import { ChatsContext } from '../../context/ChatsProvider';
 import { RootStackScreenProps } from '../../types';
 import styles from './Chat.style';
 
-export type ChatProps = RootStackScreenProps<'Chat'>;
+export type ChatProps = RootStackScreenProps<'ChatBox'>;
 
 const whatsappBackgroundImg = require('../../assets/images/whatsapp.png');
 

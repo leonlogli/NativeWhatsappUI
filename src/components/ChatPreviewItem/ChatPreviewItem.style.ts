@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import Colors from '../../constants/Colors';
+import colors from '../../utils/colors';
 
 export default StyleSheet.create({
   messageContainer: {
@@ -22,10 +22,10 @@ export default StyleSheet.create({
   },
   msgTitle: {
     fontWeight: 'bold',
-    color: Colors.light.offBlack,
+    color: colors.offBlack,
   },
   msgPreview: {
-    color: Colors.light.offBlack,
+    color: colors.offBlack,
   },
   msgDataContainer: {
     flexDirection: 'row',
@@ -36,10 +36,10 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   timeText: {
-    color: Colors.light.brightGreen,
+    color: colors.brightGreen,
   },
   numberOfMsgsContainer: {
-    backgroundColor: Colors.light.brightGreen,
+    backgroundColor: colors.brightGreen,
     height: 20,
     width: 20,
     borderRadius: 50,
@@ -49,7 +49,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   numberOfMsgsText: {
-    color: Colors.light.white,
+    color: colors.white,
     fontWeight: 'bold',
     padding: 0,
     margin: 0,

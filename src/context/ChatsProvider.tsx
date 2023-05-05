@@ -48,14 +48,14 @@ export const ChatsProvider = ({ children }: ChatsProviderProps) => {
     setCurrChat(currentConvo);
   };
 
-  function sendMessage(
+  const sendMessage = (
     newMsg: string,
     chatId: string,
     userID: number,
     setNewMsg: (msg: string) => void,
     isTyping: boolean,
     setIsTyping: (isTyping: boolean) => void,
-  ) {
+  ) => {
     if (isTyping) {
       setNewMsg('');
       setIsTyping(false);
@@ -80,7 +80,7 @@ export const ChatsProvider = ({ children }: ChatsProviderProps) => {
         return sortChats(allChats);
       });
     }
-  }
+  };
 
   return (
     <ChatsContext.Provider

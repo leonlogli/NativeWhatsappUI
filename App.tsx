@@ -1,8 +1,7 @@
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-
 import { StatusBar } from 'react-native';
 
-import Colors from './src/constants/Colors';
+import colors from './src/utils/colors';
 import { ChatsProvider } from './src/context/ChatsProvider';
 import Navigation from './src/navigation';
 import { NavigationContainer } from '@react-navigation/native';
@@ -15,7 +14,7 @@ const App = () => (
       </NavigationContainer>
       <StatusBar
         barStyle="light-content"
-        backgroundColor={Colors.light.quiteDarkGreen}
+        backgroundColor={colors.quiteDarkGreen}
       />
     </SafeAreaProvider>
   </ChatsProvider>

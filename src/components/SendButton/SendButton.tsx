@@ -15,7 +15,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Entypo from 'react-native-vector-icons/Entypo';
 
-import Colors from '../../constants/Colors';
+import colors from '../../utils/colors';
 import useKeyboardOffsetHeight from '../../helpers/useKeyboardOffsetHeight';
 import { Chat } from '../../types';
 import { ChatsContext } from '../../context/ChatsProvider';
@@ -62,7 +62,7 @@ const SendButton = ({
           <Entypo
             name="emoji-happy"
             size={24}
-            color={Colors.light.grey}
+            color={colors.grey}
             style={{
               position: 'absolute',
               bottom: 10,
@@ -92,7 +92,7 @@ const SendButton = ({
           <Entypo
             name="camera"
             size={24}
-            color={Colors.light.grey}
+            color={colors.grey}
             style={{
               position: 'absolute',
               bottom: 10,
@@ -123,12 +123,12 @@ const SendButton = ({
           >
             <Transitioning.View ref={ref} transition={msgTypeTransition}>
               {isTyping ? (
-                <Ionicons name="send" size={16} color={Colors.light.white} />
+                <Ionicons name="send" size={16} color={colors.white} />
               ) : (
                 <FontAwesome5
                   name="microphone"
                   size={16}
-                  color={Colors.light.white}
+                  color={colors.white}
                 />
               )}
             </Transitioning.View>

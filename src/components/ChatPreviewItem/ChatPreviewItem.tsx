@@ -19,7 +19,7 @@ const ChatPreviewItem = ({ chat }: ChatPreviewItemProps) => {
 
   const goToChat = () => {
     setCurrentChat(chat.id);
-    navigation.navigate('Chat', { chat });
+    navigation.navigate('ChatBox', { chat });
   };
 
   return (

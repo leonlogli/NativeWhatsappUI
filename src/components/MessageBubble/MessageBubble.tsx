@@ -23,12 +23,8 @@ const MessageBubble = ({ message }: MessageBubbleProps) => {
         borderTopRightRadius: isMyMessage ? 5 : 0,
       }}
     >
-      <View
-        style={{
-          ...styles.leftMessageArrow,
-          display: isMyMessage ? 'flex' : 'none',
-        }}
-      />
+      {isMyMessage && <View style={styles.leftMessageArrow} />}
+
       <Text
         style={{
           ...styles.messageText,
@@ -53,12 +49,8 @@ const MessageBubble = ({ message }: MessageBubbleProps) => {
             <MaterialCommunityIcons name="check" size={16} color="grey" />
           )}
         </View>
-        <View
-          style={{
-            ...styles.rightMsgArrow,
-            display: isMyMessage ? 'none' : 'flex',
-          }}
-        />
+
+        {!isMyMessage && <View style={styles.rightMsgArrow} />}
       </View>
     </View>
   );

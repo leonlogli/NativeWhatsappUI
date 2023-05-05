@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import Colors from '../../constants/Colors';
+import colors from '../../utils/colors';
 
 export default StyleSheet.create({
   messageContainer: {
@@ -16,7 +16,7 @@ export default StyleSheet.create({
     width: 0,
     borderLeftWidth: 10,
     borderLeftColor: 'transparent',
-    borderTopColor: Colors.light.white,
+    borderTopColor: colors.white,
     borderTopWidth: 10,
     alignSelf: 'flex-start',
     borderRightColor: 'black',
@@ -32,17 +32,17 @@ export default StyleSheet.create({
   },
   timeText: {
     fontSize: 12,
-    color: Colors.light.grey,
+    color: colors.grey,
   },
   rightMsgArrow: {
     height: 0,
     width: 0,
     borderRightWidth: 10,
     borderRightColor: 'transparent',
-    borderTopColor: Colors.light.msgGreen,
+    borderTopColor: colors.msgGreen,
     borderTopWidth: 10,
     alignSelf: 'flex-start',
-    left: 6,
+    left: 10,
     bottom: 10,
   },
 });

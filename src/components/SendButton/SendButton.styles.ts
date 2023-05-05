@@ -1,6 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
-import Colors from '../../constants/Colors';
+import colors from '../../utils/colors';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -17,7 +17,7 @@ export default StyleSheet.create({
 
   textBoxContainer: {
     maxHeight: windowHeight * 0.3,
-    backgroundColor: Colors.light.white,
+    backgroundColor: colors.white,
     width: '87%',
     margin: '1%',
     flexDirection: 'row',
@@ -31,7 +31,7 @@ export default StyleSheet.create({
     width: '80%',
     marginHorizontal: '2%',
     fontSize: 20,
-    color: Colors.light.text,
+    color: colors.text,
     opacity: 0.3,
   },
   voiceButtonContainer: {
@@ -40,7 +40,7 @@ export default StyleSheet.create({
     alignContent: 'center',
   },
   voiceButton: {
-    backgroundColor: Colors.light.darkGreen,
+    backgroundColor: colors.darkGreen,
     borderRadius: 50,
     height: windowWidth * 0.1,
     width: windowWidth * 0.1,

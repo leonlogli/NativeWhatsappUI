@@ -12,22 +12,22 @@ declare global {
 }
 
 export type RootStackParamList = {
-  Root: NavigatorScreenParams<RootTabParamList> | undefined;
-  Chat: { chat: Chat };
+  HomeTab: NavigatorScreenParams<HomeTabParamList> | undefined;
+  ChatBox: { chat: Chat };
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
   NativeStackScreenProps<RootStackParamList, Screen>;
 
-export type RootTabParamList = {
+export type HomeTabParamList = {
   Chats: undefined;
   Status: undefined;
   Calls: undefined;
 };
 
-export type RootTabScreenProps<Screen extends keyof RootTabParamList> =
+export type HomeTabScreenProps<Screen extends keyof HomeTabParamList> =
   CompositeScreenProps<
-    BottomTabScreenProps<RootTabParamList, Screen>,
+    BottomTabScreenProps<HomeTabParamList, Screen>,
     NativeStackScreenProps<RootStackParamList>
   >;
 
