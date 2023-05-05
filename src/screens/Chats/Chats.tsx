@@ -6,7 +6,7 @@ import ChatPreviewItem from '../../components/ChatPreviewItem';
 import { ChatsContext } from '../../context/ChatsProvider';
 import { Chat } from '../../types';
 import sharedStyle from '../../utils/sharedStyle';
-import styles from './Chats.styles';
+import styles from './Chats.style';
 
 const renderItem = ({ item }: { item: Chat }) => {
   return <ChatPreviewItem key={item.id} chat={item} />;
@@ -26,7 +26,7 @@ const ItemSeparatorComponent = () => (
   </View>
 );
 
-const ChatsScreen = () => {
+const Chats = () => {
   const { chats } = useContext(ChatsContext);
 
   return (
@@ -42,4 +42,4 @@ const ChatsScreen = () => {
   );
 };
 
-export default ChatsScreen;
+export default Chats;

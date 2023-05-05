@@ -1,18 +1,18 @@
-import { View, ImageBackground } from 'react-native';
-import { useState, useContext } from 'react';
+import { useContext, useState } from 'react';
+import { ImageBackground, View } from 'react-native';
 
-import SendButton from '../../components/SendButton/SendButton';
 import ChatMessages from '../../components/ChatMessages';
-import { RootStackScreenProps } from '../../types';
+import SendButton from '../../components/SendButton';
 import { ChatsContext } from '../../context/ChatsProvider';
-import styles from './Chat.styles';
+import { RootStackScreenProps } from '../../types';
+import styles from './Chat.style';
 
 export type ChatProps = RootStackScreenProps<'Chat'>;
 
 const whatsappBackgroundImg = require('../../assets/images/whatsapp.png');
 
-export default function Chat(props: ChatProps) {
-  const { chat } = props.route.params;
+const ChatBox = ({ route }: ChatProps) => {
+  const { chat } = route.params;
 
   const { getCurrentChat } = useContext(ChatsContext);
   const { messages } = getCurrentChat();
@@ -41,4 +41,6 @@ export default function Chat(props: ChatProps) {
       </ImageBackground>
     </View>
   );
-}
+};
+
+export default ChatBox;

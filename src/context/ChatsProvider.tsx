@@ -1,8 +1,22 @@
 import { createContext, useState } from 'react';
 
-import { Chat, ChatContextProps } from '../types';
+import { Chat } from '../types';
 import initialChats from '../data/initialChats';
 import formatMessage from '../helpers/formatMessages';
+
+type ChatContextProps = {
+  chats: Chat[];
+  sendMessage: (
+    message: string,
+    chatID: string,
+    userID: number,
+    setNewMsg: (msg: string) => void,
+    isTyping: boolean,
+    setIsTyping: (isTyping: boolean) => void,
+  ) => void;
+  getCurrentChat: () => Chat;
+  setCurrentChat: (id: string) => void;
+};
 
 export const ChatsContext = createContext<ChatContextProps>({
   chats: initialChats,

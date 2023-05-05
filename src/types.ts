@@ -33,32 +33,14 @@ export type RootTabScreenProps<Screen extends keyof RootTabParamList> =
 
 export type Chat = {
   id: string;
-  messages: MessageType[];
+  messages: Message[];
   users: number[];
   title: string;
 };
 
-export type MessageType = {
+export type Message = {
   text: string;
   time: Date;
   userID: number;
   id: string;
-};
-
-export interface MessageDataType {
-  message: MessageType;
-}
-
-export type ChatContextProps = {
-  chats: Chat[];
-  sendMessage: (
-    message: string,
-    chatID: string,
-    userID: number,
-    setNewMsg: (msg: string) => void,
-    isTyping: boolean,
-    setIsTyping: (isTyping: boolean) => void,
-  ) => void;
-  getCurrentChat: () => Chat;
-  setCurrentChat: (id: string) => void;
 };

@@ -1,23 +1,14 @@
-import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import TopTabNavigator from './TopTabNavigator';
 import Colors from '../constants/Colors';
-import Chat from '../screens/Chat/Chat';
+import ChatBox from '../screens/ChatBox/ChatBox';
 import { RootStackParamList } from '../types';
 import ChatHeader from './ChatHeader';
-
-export default function Navigation() {
-  return (
-    <NavigationContainer>
-      <RootNavigator />
-    </NavigationContainer>
-  );
-}
+import TopTabNavigator from './TopTabNavigator';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
-function RootNavigator() {
+const Navigation = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -39,7 +30,7 @@ function RootNavigator() {
       />
       <Stack.Screen
         name="Chat"
-        component={Chat}
+        component={ChatBox}
         options={{
           headerBackTitle: '',
           headerStyle: {
@@ -50,4 +41,6 @@ function RootNavigator() {
       />
     </Stack.Navigator>
   );
-}
+};
+
+export default Navigation;

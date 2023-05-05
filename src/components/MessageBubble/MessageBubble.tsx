@@ -1,11 +1,15 @@
-import { View, Text } from 'react-native';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import dayjs from 'dayjs';
+import { Text, View } from 'react-native';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import { MessageDataType } from '../../types';
+import { Message } from '../../types';
 import styles from './MessageBubble.styles';
 
-const MessageBubble = ({ message }: MessageDataType) => {
+export type MessageBubbleProps = {
+  message: Message;
+};
+
+const MessageBubble = ({ message }: MessageBubbleProps) => {
   const isMyMessage = message.userID === 1;
   const isMessageRead = false;
 
