@@ -1,11 +1,11 @@
 import { createContext, useState } from 'react';
 
-import { ConversationType, ConversationsContextType } from '../types';
-import startingConversations from '../data/startingConversations';
+import { Chat, ConversationsContextType } from '../types';
+import startingChats from '../data/startingConversations';
 import formatMessage from '../helpers/formatMessages';
 
 export const ConversationsContext = createContext<ConversationsContextType>({
-  conversations: startingConversations,
+  conversations: startingChats,
   sendMessage: () => {},
   getCurrentConversation: () => {
     return { id: '', messages: [], users: [], title: '' };
@@ -20,11 +20,11 @@ export type ConversationsProviderProps = {
 export const ConversationsProvider = ({
   children,
 }: ConversationsProviderProps) => {
-  const [conversations, setConversations] = useState<ConversationType[]>(
-    sortConversations(startingConversations),
+  const [conversations, setConversations] = useState<Chat[]>(
+    sortConversations(startingChats),
   );
 
-  const [currConversation, setCurrConversation] = useState<ConversationType>();
+  const [currConversation, setCurrConversation] = useState<Chat>();
 
   const getCurrentConversation = () => {
     if (currConversation) {
@@ -53,26 +53,21 @@ export const ConversationsProvider = ({
 
       if (currConversation && currConversation.id === thisConversationID) {
         setCurrConversation((prev) => ({
-          ...(prev as ConversationType),
+          ...(prev as Chat),
           messages: [...(prev?.messages || []), formatMessage(newMsg, userID)],
         }));
       }
 
-      setConversations((previousConversations: ConversationType[]) => {
-        const allConversations = previousConversations.map(
-          (conversation: ConversationType) => {
-            if (conversation.id === thisConversationID) {
-              return {
-                ...conversation,
-                messages: [
-                  ...conversation.messages,
-                  formatMessage(newMsg, userID),
-                ],
-              };
-            }
-            return conversation;
-          },
-        );
+      setConversations((previousConversations: Chat[]) => {
+        const allConversations = previousConversations.map((chat: Chat) => {
+          if (chat.id === thisConversationID) {
+            return {
+              ...chat,
+              messages: [...chat.messages, formatMessage(newMsg, userID)],
+            };
+          }
+          return chat;
+        });
         return sortConversations(allConversations);
       });
     }
@@ -92,7 +87,7 @@ export const ConversationsProvider = ({
   );
 };
 
-const sortConversations = (conversations: ConversationType[]) => {
+const sortConversations = (conversations: Chat[]) => {
   return conversations.sort((a, b) => {
     const lastMessageA = a.messages[a.messages.length - 1];
     const lastMessageB = b.messages[b.messages.length - 1];

@@ -17,7 +17,7 @@ import Entypo from 'react-native-vector-icons/Entypo';
 
 import Colors from '../../constants/Colors';
 import useKeyboardOffsetHeight from '../../helpers/useKeyboardOffsetHeight';
-import { ConversationType } from '../../types';
+import { Chat } from '../../types';
 import { ConversationsContext } from '../../context/conversationContext';
 
 import styles from './SendButton.styles';
@@ -27,7 +27,7 @@ interface SendButtonProps {
   isTyping: boolean;
   setHeightOfMessageBox: (height: number) => void;
   heightOfMessageBox: number;
-  thisConversation: ConversationType;
+  thisConversation: Chat;
 }
 export default function SendButton(props: SendButtonProps) {
   const whatsappBackgroundImg = '../../assets/images/whatsapp.png';

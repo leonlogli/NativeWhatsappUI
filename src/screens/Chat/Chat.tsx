@@ -12,7 +12,7 @@ export type ChatProps = RootStackScreenProps<'Chat'>;
 const whatsappBackgroundImg = require('../../assets/images/whatsapp.png');
 
 export default function Chat(props: ChatProps) {
-  const { conversation } = props.route.params;
+  const { chat } = props.route.params;
   const { getCurrentConversation } = useContext(ConversationsContext);
   const { messages } = getCurrentConversation();
 
@@ -35,7 +35,7 @@ export default function Chat(props: ChatProps) {
           isTyping={isTyping}
           setHeightOfMessageBox={setHeightOfMessageBox}
           heightOfMessageBox={heightOfMessageBox}
-          thisConversation={conversation}
+          thisConversation={chat}
         />
       </ImageBackground>
     </View>

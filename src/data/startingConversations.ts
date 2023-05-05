@@ -1,6 +1,6 @@
-import { ConversationType } from '../types';
+import { Chat } from '../types';
 
-const startingConversations: ConversationType[] = [
+const startingChats: Chat[] = [
   {
     id: '101',
     title: 'Nic Cage',
@@ -247,4 +247,4 @@ const startingConversations: ConversationType[] = [
     users: [1, 2],
   },
 ];
-export default startingConversations;
+export default startingChats;

@@ -2,18 +2,14 @@ import { FlashList } from '@shopify/flash-list';
 import React, { useContext } from 'react';
 import { View } from 'react-native';
 
-import ChatPreview from '../../components/ChatPreview';
+import ChatPreviewItem from '../../components/ChatPreviewItem';
 import { ConversationsContext } from '../../context/conversationContext';
-import { ConversationType } from '../../types';
+import { Chat } from '../../types';
 import sharedStyle from '../../utils/sharedStyle';
 import styles from './Chats.styles';
 
-type ConversationItemProps = {
-  item: ConversationType;
-};
-
-const renderConversationPreview = ({ item }: ConversationItemProps) => {
-  return <ChatPreview key={item.id} conversation={item} />;
+const renderItem = ({ item }: { item: Chat }) => {
+  return <ChatPreviewItem key={item.id} chat={item} />;
 };
 
 const ItemSeparatorComponent = () => (
@@ -37,7 +33,7 @@ const ChatsScreen = () => {
     <View style={styles.mainContainer}>
       <FlashList
         data={conversations}
-        renderItem={renderConversationPreview}
+        renderItem={renderItem}
         keyExtractor={(item) => item.id}
         estimatedItemSize={50}
         ItemSeparatorComponent={ItemSeparatorComponent}
