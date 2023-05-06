@@ -1,49 +1,43 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import colors from '../../utils/colors';
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+import { vw } from '../../utils/dimensions';
 
 export default StyleSheet.create({
   sendBtnContainer: {
-    minHeight: windowHeight * 0.06,
-    maxHeight: windowHeight * 0.4,
-    paddingHorizontal: '1%',
-    position: 'absolute',
-    left: 0,
-    width: windowWidth,
-    alignContent: 'center',
+    // position: 'absolute',
+    marginTop: 24,
+    left: 8,
+    right: 8,
+    bottom: 8,
+    width: vw - 16,
   },
-
+  bgContainer: {
+    flexDirection: 'row',
+    width: '100%',
+    gap: 8,
+  },
   textBoxContainer: {
-    maxHeight: windowHeight * 0.3,
+    flex: 1,
     backgroundColor: colors.white,
-    width: '87%',
-    margin: '1%',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: '2%',
-    paddingVertical: '1%',
-    borderRadius: 20,
+    paddingHorizontal: 16,
+    borderRadius: 48,
+    gap: 8,
   },
   textInput: {
-    width: '80%',
-    marginHorizontal: '2%',
+    flex: 1,
     fontSize: 20,
     color: colors.text,
-    opacity: 0.3,
-  },
-  voiceButtonContainer: {
-    width: '11%',
-    justifyContent: 'center',
-    alignContent: 'center',
+    opacity: 0.6,
   },
   voiceButton: {
     backgroundColor: colors.darkGreen,
-    borderRadius: 50,
-    height: windowWidth * 0.1,
-    width: windowWidth * 0.1,
+    borderRadius: 48,
+    height: 48,
+    width: 48,
     alignItems: 'center',
     justifyContent: 'center',
   },

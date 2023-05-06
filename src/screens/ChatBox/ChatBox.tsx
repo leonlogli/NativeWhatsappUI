@@ -5,7 +5,7 @@ import ChatMessages from '../../components/ChatMessages';
 import SendButton from '../../components/SendButton';
 import { ChatsContext } from '../../context/ChatsProvider';
 import { RootStackScreenProps } from '../../types';
-import styles from './Chat.style';
+import styles from './ChatBox.style';
 
 export type ChatProps = RootStackScreenProps<'ChatBox'>;
 
@@ -18,7 +18,6 @@ const ChatBox = ({ route }: ChatProps) => {
   const { messages } = getCurrentChat();
 
   const [isTyping, setIsTyping] = useState(false);
-  const [heightOfMessageBox, setHeightOfMessageBox] = useState(0);
 
   return (
     <View style={styles.mainContainer}>
@@ -27,17 +26,8 @@ const ChatBox = ({ route }: ChatProps) => {
         source={whatsappBackgroundImg}
         resizeMode="cover"
       >
-        <ChatMessages
-          heightOfMessageBox={heightOfMessageBox}
-          messages={messages}
-        />
-        <SendButton
-          setIsTyping={setIsTyping}
-          isTyping={isTyping}
-          setHeightOfMessageBox={setHeightOfMessageBox}
-          heightOfMessageBox={heightOfMessageBox}
-          chat={chat}
-        />
+        <ChatMessages messages={messages} />
+        <SendButton setIsTyping={setIsTyping} isTyping={isTyping} chat={chat} />
       </ImageBackground>
     </View>
   );
